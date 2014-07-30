@@ -69,19 +69,22 @@ var app = {
 	}
 	
 };*/
+
+var serviceURL = "http://www.maurobailotti.it/mobile/app/test/";
+
 var resultDiv;
 
 document.addEventListener("deviceready", init, false);
 function init() {
 	document.querySelector("#startScan").addEventListener("touchend", startScan, false);
 	document.querySelector("#vediArt").addEventListener("touchend", viewArt, false);
+	document.querySelector("#codart").addEventListener("keydown", premiInvio, false);
 	resultDiv = document.querySelector("#results");
 }
 
 function startScan() {
 	var codice;
 	codice="";
-	/*
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
 			var s = "Result: " + result.text + "<br/>" +
@@ -94,13 +97,13 @@ function startScan() {
 			alert("Scanning failed: " + error);
 			
 		}
-	);*/
+	);
 	if (codice=="") {
 		codice="ArtProva";
 		var elem = document.getElementById("codart");
 		elem.value = codice;
 		var vediarticolo = document.querySelector("#viewArticolo");
-		vediarticolo.innerHTML = '<a href="prodotto.html">MOSTRA ARTICOLO</a>';
+		vediarticolo.innerHTML = '<a href="Prodotto.html">MOSTRA ARTICOLO</a>';
 	}
 
 }
@@ -110,6 +113,14 @@ function viewArt() {
 	var elem = document.getElementById("codart");
 	codice = elem.value;
 	//alert(codice);
-	$.mobile.changePage('Prodotto.html', {dataUrl: 'Prodotto.html', transition: "pop"}); 
+	$.mobile.changePage('Prodotto.html?id='+codice, {dataUrl: 'Prodotto.html?id='+codice, transition: "pop"}); 
 }
 
+function premiInvio(e) {
+	var keyCode = e.keyCode || e.which;
+
+  if (keyCode == 13) {
+	//alert("Premuto Invio");
+	viewArt();
+  }
+}
