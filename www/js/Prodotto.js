@@ -5,6 +5,12 @@ $(document).on('pagecontainershow', function(event, ui) {
 		$.getJSON(serviceURL + 'GetProdotto.php?id='+id, displayProdotto);
 		document.querySelector("#confermaArt").addEventListener("touchend", confermaArticolo, false);
 	}
+	if (pageId === "ScanBarcodeHome") {
+		var elem = document.getElementById("codart");
+		elem.value = '';
+		elem.focus();
+		setTimeout(function(){	document.getElementById("codart").focus();},10);
+	}
 });
 
 function displayProdotto(data) {
@@ -30,6 +36,10 @@ function getUrlVars() {
 }
 
 function confermaArticolo() {
+	
 	history.back();
+	var elem = document.getElementById("codart");
+	elem.value = '';
+	elem.focus();
 	return false;
 }
