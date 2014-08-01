@@ -10,6 +10,7 @@ $(document).on('pagecontainershow', function(event, ui) {
 		elem.value = '';
 		elem.focus();
 		setTimeout(function(){	document.getElementById("codart").focus();},10);
+		//Con questo set timeout sul device funziona il setfocus che altrimenti non andava
 	}
 });
 
