@@ -92,6 +92,9 @@ function startScan() {
 			"Cancelled: " + result.cancelled;
 			resultDiv.innerHTML = s;
 			codice = result.text;
+			var elem = document.getElementById("codart");
+			elem.value = codice;
+			viewArt();
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
